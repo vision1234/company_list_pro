@@ -1,17 +1,20 @@
 <template>
   <div class="big-border">
-    <HelloWorld />
+    <!-- <router-link to="/">Home</router-link>
+    <router-link to="/Login">Login</router-link> -->
+
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/ImageManage.vue'
-
+// import Home from './components/ImageManage.vue'
+// import Login from './components/LoginView.vue'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  // components: {
+  //   Login
+  // }
 }
 </script>
 
