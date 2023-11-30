@@ -1,7 +1,7 @@
 
 const GlobalVariablesPlugin = {
     install(app) {
-      app.config.globalProperties.$baseURL = "http://127.0.0.1:7010/";
+      app.config.globalProperties.$baseURL = "http://121.36.25.161:7010/";
     },
   };
   
