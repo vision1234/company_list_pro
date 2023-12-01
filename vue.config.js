@@ -5,5 +5,5 @@ module.exports = defineConfig({
   devServer: {
     port: 8083, // 你希望使用的端口号
   },
-  publicPath:'/vue_serve/dist'
+  publicPath:'/'
 });
