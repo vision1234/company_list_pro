@@ -6,5 +6,3 @@ const GlobalVariablesPlugin = {
   };
   
   export default GlobalVariablesPlugin;
-  
-  
