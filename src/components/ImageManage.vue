@@ -266,7 +266,7 @@ export default {
     async handleSearch() {
       this.fetchItems();
     },
-    handleEdit(row) {
+    async handleEdit(row) {
       this.form.cate = row.cate;
       this.form.tag = row.tag;
       this.form.image_path = row.image_path;
