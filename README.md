@@ -1,5 +1,18 @@
 # my-vue-project
 
+## create file src\plugins\globalVariables.js
+```
+
+const GlobalVariablesPlugin = {
+    install(app) {
+      app.config.globalProperties.$baseURL = "your service address";
+    },
+  };
+  
+  export default GlobalVariablesPlugin;
+
+```
+
 ## Project setup
 ```
 npm install
