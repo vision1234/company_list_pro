@@ -1,37 +1,52 @@
-# my-vue-project
+# vue3+elementplus+js的后台管理系统
 
-## create file src\plugins\globalVariables.js
+## 项目启动前需要手动在根目录创建一个 config.js
 ```
 
-const GlobalVariablesPlugin = {
-    install(app) {
-      app.config.globalProperties.$baseURL = "your service address";
-    },
+const config = {
+    apiBaseUrl: process.env.VUE_APP_API_BASE_URL || 'http://xxxxxxxx/'
   };
   
-  export default GlobalVariablesPlugin;
+  export default config;
+  
 
 ```
 
-## Project setup
+## 项目安装
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 本地启动调试
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 打包生成静态文件
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### 捕捉潜在的错误、风格问题或不规范的代码
 ```
 npm run lint
 ```
+### 部署
+```
+将build的静态文件dist目录复制到某个路径，然后配置nginx
+server {
+    listen 80;
+    server_name your_domain.com; # 替换为你的域名或服务器 IP
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+    root /path/to/your/vue/project/dist; # 替换为你 Vue 项目的 dist 目录路径
+
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # 其他配置...
+}
+注意要给到nginx用户dist下所有文件读取权限，并且不能放到/home目录下
+```

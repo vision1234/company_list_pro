@@ -19,7 +19,11 @@
           placeholder="关键词"
           class="handle-input mr10"
         ></el-input>
-        <el-button type="primary" :icon="Search" @click="handleSearch"
+        <el-button
+          type="primary"
+          :icon="Search"
+          @click="handleSearch"
+          class="myButton"
           >搜索</el-button
         >
         <el-button
@@ -28,7 +32,7 @@
           tag="a"
           href="http://file.yiomiya.cn/"
           target="_blank"
-          class="no-underline"
+          class="no-underline myButton"
           >新增</el-button
         >
       </div>
@@ -234,8 +238,7 @@ export default {
     },
     async fetchItems() {
       try {
-        console.log(this.$baseURL);
-        const response = await axios.get(this.$baseURL + "search", {
+        const response = await axios.get("search", {
           params: {
             keyword: this.query.kw,
             cate: this.query.cate,
@@ -252,8 +255,7 @@ export default {
     },
     async fetchCates() {
       try {
-        console.log(this.$baseURL);
-        const response = await axios.get(this.$baseURL + "getCate"); // 替换成你的后端接口路径
+        const response = await axios.get("getCate"); // 替换成你的后端接口路径
         this.cateList = response.data;
       } catch (error) {
         console.error("Error fetching items:", error);
@@ -280,7 +282,7 @@ export default {
     async updateItem(item) {
       try {
         console.log(item);
-        const response = await axios.post(`${this.$baseURL}/edit`, item); // 替换成你的后端接口路径
+        const response = await axios.post("edit", item); // 替换成你的后端接口路径
         const updatedItem = response.data;
         console.log(updatedItem);
         // if (updatedItem.success && updatedItem.modified_count) {
@@ -329,7 +331,7 @@ export default {
     },
     async delItem(deleteItem) {
       try {
-        await axios.post(`${this.$baseURL}del`, deleteItem); // 替换成你的后端接口路径
+        await axios.post("del", deleteItem); // 替换成你的后端接口路径
         // if (response.data.deleted_count) {
         //   alert("删除成功");
         // }else
@@ -401,5 +403,17 @@ export default {
 }
 .editSelect {
   width: 40%;
+}
+.myButton {
+  color: #fff;
+  background-color: #20a0ff;
+  border-color: #20a0ff;
+  padding: 10px 15px;
+}
+
+.myButton:hover {
+  background: #4db3ff;
+  border-color: #4db3ff;
+  color: #fff;
 }
 </style>
