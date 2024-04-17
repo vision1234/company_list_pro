@@ -176,7 +176,6 @@ import axios from "axios";
 export default {
   data() {
     return {
-      // baseURL: "http://121.36.25.161:7009/",
       query: { kw: "", cate: "", pageIndex: 1, pageSize: 1 },
       requestData: {
         tableData: [
