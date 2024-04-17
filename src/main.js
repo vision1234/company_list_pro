@@ -2,15 +2,19 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
-import GlobalVariablesPlugin from './plugins/globalVariables';
+// import GlobalVariablesPlugin from './plugins/globalVariables';
 import router from '../router/index.js';
+import config from '../config';
+import axios from "axios";
+
+axios.defaults.baseURL = config.apiBaseUrl;
 const app = createApp(App);
 
 // Install Element Plus
 app.use(ElementPlus);
 
 // Install your custom plugin
-app.use(GlobalVariablesPlugin);
+// app.use(GlobalVariablesPlugin);
 
 // Install your router
 app.use(router);
