@@ -54,14 +54,18 @@ export default {
 	methods: {
 		async submitForm(login){
 			console.log(login.password);
-			const response = await axios.post(`${this.$baseURL}/login`, login); // 替换成你的后端接口路径
+			const response = await axios.post('login', login); // 替换成你的后端接口路径
 			console.log(response)
-			if(response.data.success){
-				localStorage.setItem("pass", JSON.stringify(response.data.success));
-				this.$router.push('/');
+			var data={
+				admin:response.data.success,
+				expiry:new Date().getTime()+86400
 			}
-		}
-	}
+			
+			localStorage.setItem("pass", JSON.stringify(data));
+			this.$router.push('/');
+			
+		
+	}}
 
 }
 

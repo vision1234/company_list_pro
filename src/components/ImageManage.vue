@@ -44,35 +44,20 @@
         header-cell-class-name="table-header"
       >
         <el-table-column
-          prop="image_path"
-          label="图片路径"
+          prop="name"
+          label="名称"
           align="center"
         ></el-table-column>
         <el-table-column
-          prop="thumbnail_path"
-          label="缩略图路径"
+          prop="reason"
+          label="原因"
         ></el-table-column>
         <el-table-column
           label="分类"
           prop="cate"
           align="center"
         ></el-table-column>
-        <el-table-column label="缩略图" align="center">
-          <template #default="scope">
-            <el-image
-              class="table-td-thumb"
-              :src="`${this.$baseURL}${scope.row.thumbnail_path}`"
-              :z-index="10"
-              :preview-src-list="[`${this.$baseURL}${scope.row.image_path}`]"
-              fit="contain"
-              preview-teleported
-              lazy
-            >
-            </el-image>
-          </template>
-        </el-table-column>
-
-        <el-table-column label="标签" align="center">
+        <!-- <el-table-column label="标签" align="center">
           <template #default="scope">
             <el-tag
               v-for="(t, index) in scope.row.tag"
@@ -81,18 +66,18 @@
               >{{ t }}</el-tag
             >
           </template>
-        </el-table-column>
-        <el-table-column label="创建时间">
+        </el-table-column> -->
+        <el-table-column label="创建时间" v-if="admin">
           <template #default="scope">
             {{ formatDate(scope.row.create_time) }}
           </template>
         </el-table-column>
-        <el-table-column label="修改时间">
+        <el-table-column label="修改时间" v-if="admin">
           <template #default="scope">
             {{ formatDate(scope.row.update_time) }}
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="220" align="center">
+        <el-table-column label="操作" width="220" align="center" v-if="admin">
           <template #default="scope">
             <el-button
               type="primary"
@@ -184,13 +169,13 @@ export default {
       requestData: {
         tableData: [
           {
-            cate: "游戏",
+            cate: "外包",
             create_time: "Sun, 26 Nov 2023 06:01:07 GMT",
-            image_path:
-              "static/images/游戏/170019434981901f7760262e6b9f52f8f44c78b4ac841e836f1017a2bf4e5460c2b344ec6ffd5.0.png",
-            tag: ["原神", "宵宫"],
-            thumbnail_path:
-              "static/thumbnail/游戏/170019434981901f7760262e6b9f52f8f44c78b4ac841e836f1017a2bf4e5460c2b344ec6ffd5.0.png",
+            name:
+              "复深蓝",
+            tag: ["克扣工资", "克扣加班费"],
+            reason:
+              "垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾垃圾",
           },
         ],
         pageTotal: 1,
@@ -212,12 +197,14 @@ export default {
       showVisibleItem: false,
       deleteDialogVisible: false,
       deleteItem: {},
+      admin:false
     };
   },
   mounted() {
     // 在组件加载时从后端获取数据
     this.fetchItems();
     this.fetchCates();
+    this.admin=JSON.parse(localStorage.getItem("pass")).admin
     // console.log(tableData);
   },
   methods: {

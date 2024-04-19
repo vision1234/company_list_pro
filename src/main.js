@@ -4,7 +4,7 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 // import GlobalVariablesPlugin from './plugins/globalVariables';
 import router from '../router/index.js';
-import config from '../config';
+import config from '../config.js';
 import axios from "axios";
 
 axios.defaults.baseURL = config.apiBaseUrl;
